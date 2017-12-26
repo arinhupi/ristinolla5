@@ -14,14 +14,13 @@
 
 class RNTable {
 public:  
-    RNTable(int rows, int cols);
+	RNTable(int rows, int cols);
 	virtual ~RNTable();
 	void displayAll();
 	void setValue(int r, int c, int newVal);
-	int getValue(int r, int c);
-	int findLongestSeq(int value);
-    void findAllSeqs(int value, RNSeqVec& seqVec);
-    void findSeqsAndPairs(int value, RNSeqVec& seqVec, RNSeqVec& pairVec);
+	int getValue(int r, int c) const;
+	void findAllSeqs(int value, RNSeqVec& seqVec);
+	void findSeqsAndPairs(int value, RNSeqVec& seqVec, RNSeqVec& pairVec);
 
 	int getCols() const {
 		return cols;
@@ -40,8 +39,8 @@ private:
 	void findDiagonalUpSeqs(int value, RNSeqVec& seqVec);
 	void findDiagonalDownSeqs(int value, RNSeqVec& seqVec);
 	void findSeqsInRow(const std::vector<int>& virtualRow, int absRol, int absCol, int dir, int value, RNSeqVec& seqVec);
-    void findSeqPairs(RNSeqVec& seqVec, RNSeqVec& seqPairVec);
-	void printColumn(const std::vector<int>&);
+	void findSeqPairs(RNSeqVec& seqVec, RNSeqVec& seqPairVec);
+	void printColumn(const std::vector<int>&) const;
 };
 
 #endif /* RNTABLE_H_ */

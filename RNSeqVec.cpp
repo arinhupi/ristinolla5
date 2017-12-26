@@ -11,7 +11,6 @@
 
 RNSeqVec::RNSeqVec() {
 	// TODO Auto-generated constructor stub
-
 }
 
 RNSeqVec::~RNSeqVec() {
@@ -60,10 +59,6 @@ void RNSeqVec::removeBadSequences() {
 	}
 }
 
-void RNSeqVec::findMove(int& row, int& col) {
-	seqVec.at(0).getOptimalMove(row, col);
-}
-
 void RNSeqVec::add(RNSequence& rnSeq) {
 	seqVec.push_back(rnSeq);
 }
@@ -72,11 +67,14 @@ RNSequence& RNSeqVec::getSequenceAt(int index) {
 	return seqVec.at(index);
 }
 
-int RNSeqVec::getSize() {
+int RNSeqVec::getSize() const {
 	return seqVec.size();
 }
 
 bool RNSeqVec::isSeqPairWithNext(int firstIndex) {
+	if (firstIndex >= (int)seqVec.size()-1)
+		return false;
+
 	if (seqVec.at(firstIndex).isSeqPair(seqVec.at(firstIndex+1)))
 		return true;
 	else

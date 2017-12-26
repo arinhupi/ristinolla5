@@ -37,7 +37,7 @@ QVector<int> RNGame::fullSeqFound(int value)
     RNSeqVec rnvec;
     rntable->findAllSeqs(value, rnvec);
     rnvec.sortByLength();
-    if (rnvec.getSequenceAt(0).getLength() == RNSequence::MAX_LEN){
+    if (rnvec.getSequenceAt(0).getLength() >= RNSequence::MAX_LEN){
         qv.push_back(5 /*RNSequence::MAX_LEN*/);
         getRNTableIndexes(rnvec.getSequenceAt(0), qv);
     }

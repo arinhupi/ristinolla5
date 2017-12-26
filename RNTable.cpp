@@ -37,16 +37,9 @@ void RNTable::setValue(int r, int c, int newVal) {
 	rnTable.at(r).at(c) = newVal;
 }
 
-int RNTable::getValue(int r, int c) {
+int RNTable::getValue(int r, int c) const{
 	return rnTable.at(r).at(c);
 }
-
-int RNTable::findLongestSeq(int value) {
-	RNSeqVec rnSeq;
-	findAllSeqs(value, rnSeq);
-	return rnSeq.sortByLength();
-}
-
 
 void RNTable::findAllSeqs(int value, RNSeqVec& seqVec) {
 	findHorizontalSeqs(value, seqVec);
@@ -133,7 +126,7 @@ void RNTable::findSeqPairs(RNSeqVec& seqVec, RNSeqVec& seqPairVec) {
 	}
 }
 
-void RNTable::printColumn(const std::vector<int>& col) {
+void RNTable::printColumn(const std::vector<int>& col) const {
 	for (unsigned int i=0; i<col.size(); i++)
 		std::cout << col.at(i) << " ";
 	std::cout << std::endl;

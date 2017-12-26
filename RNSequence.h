@@ -13,7 +13,7 @@
 
 class RNSequence {
 public:
-    static const int MAX_LEN = 5;
+	static const int MAX_LEN = 5;
 	static const int HORIZONTAL = 1;
 	static const int VERTICAL = 2;
 	static const int DIAGONAL_UP = 3;
@@ -22,11 +22,11 @@ public:
 	static const int GUIDE_ANY_ENDING = 2;
 	RNSequence();
 	virtual ~RNSequence();
-    void fillValues(int absRow, int absCol, int index, int dir, int len, const std::vector<int>& virtualRow, int value);
+	void fillValues(int absRow, int absCol, int index, int dir, int len, const std::vector<int>& virtualRow, int value);
 	void fillSeqPairValues(RNSequence& rnSeq1, RNSequence& rnSeq2);
-	void printSeqValues(std::string myText);
-	bool isSeqPair(RNSequence& rnSeq2);
-	void getOptimalMove(int& row, int& col);
+	void printSeqValues(std::string myText) const;
+	bool isSeqPair(RNSequence& rnSeq2) const;
+	void getOptimalMove(int& row, int& col) const;
 	bool isGoodForMove();
 	int getLength() const {
 		return length;

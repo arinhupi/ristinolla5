@@ -15,10 +15,9 @@
 class RNPlayer {
 
 public:
-    RNPlayer(std::string name, int myVal) ;
+	RNPlayer(std::string name, int myVal) ;
 	virtual ~RNPlayer();
-    //int move(RNTable& rnTable);
-	int compMove(RNTable& rnTable, int oppVal, int round);    
+	int compMove(RNTable& rnTable, int oppVal, int round) const;
 	const std::string& getName() const {
 		return name;
 	}
@@ -30,8 +29,11 @@ public:
 private:
 	std::string name;
 	int myVal;
-    //void queryLocation(RNTable& rnTable, int& row, int& col) const;
-
+	int moveRow;
+	int moveCol;
+	void findBestMove(RNSeqVec& ownSeqs, RNSeqVec& oppSeqs, int& row, int& col) const;
+	void findBestMove2(RNSeqVec& ownSeqs, RNSeqVec& oppSeqs);
 };
 
 #endif /* RNPLAYER_H_ */
+

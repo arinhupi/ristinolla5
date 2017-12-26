@@ -30,8 +30,6 @@ void RNSequence::fillValues(int absRow, int absCol, int index, int dir, int len,
 	seqPair = false;
 	freeIndexOfPair = 0;
 	//printSeqValues("RNSequence fillValues found sequence");
-
-    //return true;
 }
 
 void RNSequence::fillSeqPairValues(RNSequence& rnSeq1, RNSequence& rnSeq2) {
@@ -45,25 +43,25 @@ void RNSequence::fillSeqPairValues(RNSequence& rnSeq1, RNSequence& rnSeq2) {
 	seqPair = true;
 	freeIndexOfPair = rnSeq1.seqStartIndex + rnSeq1.length;
 	value = rnSeq1.value;
-    //printSeqValues("fillSeqPairValues found pair");
+	//printSeqValues("fillSeqPairValues found pair");
 }
 
-void RNSequence::printSeqValues(std::string myText) {
+void RNSequence::printSeqValues(std::string myText) const {
 	printf("%s: val:%d r:%d c:%d ix:%d dir:%d len:%d fs:%d fe:%d\n", myText.c_str(), value, startRow, startCol, seqStartIndex, direction,
 			length,	freeAtStart, freeAtEnd);
 }
 
-bool RNSequence::isSeqPair(RNSequence& rnSeq2) {
-    if (startRow != rnSeq2.startRow || startCol != rnSeq2.startCol || direction != rnSeq2.direction)
+bool RNSequence::isSeqPair(RNSequence& rnSeq2) const {
+	if (startRow != rnSeq2.startRow || startCol != rnSeq2.startCol || direction != rnSeq2.direction)
 		return false;
 
-	if (freeAtEnd &&rnSeq2.seqStartIndex == seqStartIndex+length+1){
+	if (freeAtEnd &&rnSeq2.seqStartIndex == seqStartIndex+length+1)
 		return true;
-	} else
+	else
 		return false;
 }
 
-void RNSequence::getOptimalMove(int& row, int& col) {
+void RNSequence::getOptimalMove(int& row, int& col) const {
 	int index;
 	row = startRow;	col = startCol;
 
@@ -86,17 +84,19 @@ void RNSequence::getOptimalMove(int& row, int& col) {
 		row += index;
 		col += index;
 	}
-    //std::cout << "getOptimal: " << row << " - " << col << std::endl;
+	//std::cout << "getOptimal: " << row << " - " << col << std::endl;
 }
 
 bool RNSequence::isGoodForMove() {
-    if ((freeAtStart || freeAtEnd) && potentialLength() >= MAX_LEN)
+	if ((freeAtStart || freeAtEnd) && potentialLength() >= MAX_LEN)
 		return true;
-	else return false;
+	else
+		return false;
 
 }
 
 int RNSequence::countFreeBefore(int startIndex,	const std::vector<int>& virtualRow, int value) {
+	if (startIndex == 0) return 0;
 	int counter = 0;
 	for (int i = startIndex-1; i >= 0; i--){
 		if (virtualRow.at(i) == 0 || virtualRow.at(i) == value)
@@ -126,7 +126,7 @@ int RNSequence::getFreedom() const{
 	int retVal = 0;
 	if (freeAtStart) retVal++;
 	if (freeAtEnd) retVal++;
-    if (seqPair) length == 4 ? retVal+=2 : retVal++;
+	if (seqPair) length == 4 ? retVal+=2 : retVal++;
 
 	return retVal;
 }

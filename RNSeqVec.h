@@ -17,9 +17,8 @@ public:
 	int sortByLength();
 	int sortByLengthAndPotential();
 	void removeBadSequences();
-	void findMove(int& row, int& col);
 	void add(RNSequence& rnSeq);
-	int getSize();
+	int getSize() const;
 	RNSequence& getSequenceAt(int index);
 	bool isSeqPairWithNext(int firstIndex);
 	void append(RNSeqVec& otherVec);

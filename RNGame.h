@@ -22,9 +22,6 @@ public:
     Q_INVOKABLE QVector<int> fullSeqFound(int value);
     Q_INVOKABLE void resetTable();
 
-//signals:
-//public slots:
-
 private:
     RNPlayer* player1;
     RNPlayer* player2;
